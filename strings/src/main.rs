@@ -1,6 +1,7 @@
 fn main() {
     strings();
     string_copy();
+    func_ownership();
 }
 
 fn strings() {
@@ -27,4 +28,27 @@ fn string_copy() {
     // To copy it, we use the clone() method.
     println!("{} {}", s3, s4);
 }
+
+fn func_ownership() {
+    let s = String::from("Took ownership");
+    take_ownership(s);
+    
+    // variable 's' is out of scope now since s is moved to the function
+    // we shouldn't be able to use it anymore.
+    let x = 5;
+    make_copy(x);
+
+    // but here, we are copying the value of x and moving it to another function
+    // so we should still be able to use it after.
+    println!("{} used once.", x);
+}
+
+fn take_ownership(s: String) {
+    println!("{}", s);
+}
+
+fn make_copy(x: i32) {
+    println!("{} just copied from above.", x);
+}
+
 
