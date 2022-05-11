@@ -3,6 +3,8 @@ fn main() {
     references();
     mut_refs();
     multiple_mut();
+
+    dangling();
 }
 
 fn references() {
@@ -63,3 +65,26 @@ fn multiple_mut() {
     println!("Now we should be able to create a mutable refs.: {}", r3);
 
 }
+
+fn dangling() {
+    let reference_to_something = dangle();
+}
+
+//fn dangle() -> &String {
+//    let s = String::from("Hemlo");
+//    &s
+//}
+
+// The reason it failed is, in dangle() method we are trying to return a reference to s, but as
+// soon as the method ends, 's' is also deallocated from the memory, since it is out of scope now,
+// and returning a pointer to s, would point to an invalid address, hence dangling pointers.
+// So compiler would throw us an error here.
+
+// The solution here is to return the string completely.
+//
+
+fn dangle() -> String {
+    let s = String::from("Hemlo");
+    s
+}
+
