@@ -2,6 +2,7 @@ fn main() {
     strings();
     string_copy();
     func_ownership();
+    string_length();
 }
 
 fn strings() {
@@ -51,4 +52,14 @@ fn make_copy(x: i32) {
     println!("{} just copied from above.", x);
 }
 
+fn string_length() {
+    let s = String::from("String with length");
+    let (s1, len) = get_length(s);
+    println!("{}: {}", s1, len);
+}
 
+fn get_length(s: String) -> (String, usize) {
+    let length = s.len();
+    (s, length)
+}
+    
