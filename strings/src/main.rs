@@ -62,4 +62,4 @@ fn get_length(s: String) -> (String, usize) {
     let length = s.len();
     (s, length)
 }
-    
+
